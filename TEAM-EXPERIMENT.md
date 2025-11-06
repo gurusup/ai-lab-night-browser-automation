@@ -1,13 +1,11 @@
-# AI LAB NIGHT - [Your Team Name]
-- Participant 1
-- Participan 2
-- .....
-
+# AI LAB NIGHT - Laydec Company
+- Ithril
+- Joan
 ## Challenges
-[An explanation of the challenge]
+Crear un scraper en google maps para crear una base de datos de potenciales clientes de un sector en concreto.
 
 ## Tech Stack
-[Explain what Tech Stack you have use (Libraries, Agent Stack, Programing Language....)]
-
+- Python
+- Browser Use
 ## Results and Conclusions
-[Explain yout findings and conclusions regarding the technology]
+Al principio le he planteado la tarea a Claude Code y el código generado ha empezado a guardar algunos prospectos, he identificado muchos problemas y he empezado a arreglar el scroll infinito en los resultados de google maps. Luego Joan me ha dado la idea de primero juntar urls y luego lanzar otro proceso con un agente para hacer el scrap, pero no me da tiempo.
