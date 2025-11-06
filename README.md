@@ -89,3 +89,32 @@ Below are the technological challenge categories along with suggested websites f
 
 > 🔍 _Note:_ The suggested web sites are a starting point; participants may propose **other** web sites and challenges provided they clearly explain why the selected site meets the technological challenge. Participants must cite the URL, justify the match to the challenge, and document any limitations or risks found.
 
+---
+
+## Levante Team Experiment
+
+This repository includes a complete implementation by Levante Team:
+
+- **[Team Experiment](TEAM-EXPERIMENT.md)** - Team info and challenge selection
+- **[Project Documentation](docs/PROJECT_README.md)** - Complete project details
+- **[Agent Guide](docs/AGENT_GUIDE.md)** - Agent vs Traditional automation comparison
+- **[Usage Guide](docs/USAGE.md)** - How to use the QA automation system
+- **[PRD](docs/exclude/PRD.md)** - Product requirements document
+
+### Quick Start
+
+```bash
+# Install dependencies
+uv pip install -e .
+
+# Configure environment
+cp .env.example .env
+# Add your API keys to .env
+
+# Run the Agent-based automation
+uv run python examples/agent_basic_test.py
+
+# Run traditional automation
+uv run python examples/basic_test.py
+```
+

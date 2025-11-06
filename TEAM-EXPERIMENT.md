@@ -7,6 +7,7 @@ Automated Quality Assurance testing of a Shopify store using natural language pr
 ## Tech Stack
 - [mcp-use](https://github.com/mcp-use/mcp-use) - Python library for MCP
 - [browser-use](https://github.com/browser-use/browser-use) - Browser automation library
+- [levante](https://github.com/levante-hub/levante) - Testing MCP Chat
 - Python
 
 ## Results and Conclusions
