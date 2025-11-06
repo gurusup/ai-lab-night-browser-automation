@@ -4,6 +4,9 @@ docs/exclude
 # Environment
 .env
 
+# Deprecated scripts
+run_mcp_server.sh
+
 # Python
 __pycache__/
 *.py[cod]

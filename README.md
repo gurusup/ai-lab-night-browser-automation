@@ -116,5 +116,26 @@ uv run python examples/agent_basic_test.py
 
 # Run traditional automation
 uv run python examples/basic_test.py
+
+# Use as MCP Server (for Claude Desktop, Cursor, etc.)
+uv run python -m src.mcp_server.qa_mcp_server
+```
+
+### MCP Server
+
+The QA automation system can be exposed as an **MCP (Model Context Protocol) server**, allowing any MCP client to use our intelligent browser automation:
+
+- **[MCP Server Guide](docs/MCP_SERVER.md)** - Complete MCP server documentation
+- **[External Configuration Guide](docs/MCP_EXTERNAL_CONFIG.md)** - Use from other projects/locations
+- **Tools Available**: `qa_execute_test`, `qa_navigate_and_screenshot`, `qa_search_product`, `qa_verify_element`
+- **Clients Supported**: Claude Desktop, Cursor, VS Code, any MCP client
+
+**Quick setup for Claude Desktop:**
+
+See [MCP_EXTERNAL_CONFIG.md](docs/MCP_EXTERNAL_CONFIG.md) for complete configuration examples for Claude Desktop, Cursor, and other MCP clients.
+
+**Example usage in Claude Desktop:**
+```
+Can you use the QA automation tools to test the homepage of thehoffbrand.com?
 ```
 

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp-config.json",
+  "mcpServers": {
+    "qa-automation": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/Users/oliver/Sites/community/gurusup/ai-lab-night-browser-automation",
+        "python",
+        "-m",
+        "src.mcp_server.qa_mcp_server"
+      ],
+      "description": "QA Automation with intelligent browser Agent",
+      "env": {
+        "HEADLESS_MODE": "false"
+      }
+    }
+  }
+}

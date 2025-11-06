@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "qa-automation": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "-m",
+        "src.mcp_server.qa_mcp_server"
+      ],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    }
+  }
+}
