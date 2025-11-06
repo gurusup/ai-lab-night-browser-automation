@@ -1,13 +1,13 @@
 # AI LAB NIGHT - [Your Team Name]
-- Participant 1
-- Participan 2
+- Participant "aiotdeveloper" Jose Fco.
+- Participan "dbarea" como colaborador estrella.
 - .....
 
 ## Challenges
-[An explanation of the challenge]
+Buscar en varias webs e ir enlazando contenido para finalmente hacer un articulo para publicar de forma automatica. 
 
 ## Tech Stack
-[Explain what Tech Stack you have use (Libraries, Agent Stack, Programing Language....)]
+Browser use
 
 ## Results and Conclusions
-[Explain yout findings and conclusions regarding the technology]
+Mucho potencial para automatizar tareas y/o busqueda de informacion para hacer resumenes o publicaciones automaticas.
