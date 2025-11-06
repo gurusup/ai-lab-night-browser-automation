@@ -1,0 +1,10 @@
+[project]
+name = "ai-lab-night-browser-automation"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "browser-use>=0.9.5",
+    "browser-use-sdk",
+]
