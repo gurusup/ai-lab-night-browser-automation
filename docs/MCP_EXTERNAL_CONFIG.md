@@ -325,7 +325,8 @@ List all available tools and tell me what each one does
 
 En Claude Desktop:
 ```
-Use the QA automation tools to navigate to https://example.com and take a screenshot
+Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/,
+add it to cart and generate screenshot
 ```
 
 ---
@@ -380,7 +381,8 @@ Guarda estas rutas para referencia rápida:
 
 Después de guardar, reinicia Claude y prueba:
 ```
-Show me the available QA automation tools and run a simple test on thehoffbrand.com
+Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/,
+add it to cart and generate screenshot
 ```
 
 ---

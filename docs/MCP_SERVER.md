@@ -12,93 +12,83 @@ This MCP server exposes our intelligent browser automation Agent as MCP tools, a
 │  (Any LLM)      │
 └────────┬────────┘
          │ MCP Protocol
-         ├─────────────────────────────────┐
-         │                                 │
-┌────────▼────────┐              ┌────────▼────────┐
-│  qa_execute_test│              │ qa_search_product│
-└────────┬────────┘              └────────┬────────┘
-         │                                │
-         └────────────┬───────────────────┘
-                      │
-            ┌─────────▼──────────┐
-            │  Browser Agent     │
-            │  (browser-use)     │
-            └─────────┬──────────┘
-                      │
-            ┌─────────▼──────────┐
-            │   Chrome Browser   │
-            │   (Playwright)     │
-            └────────────────────┘
+         │ (stdio)
+         │
+┌────────▼────────┐
+│  qa_automation  │  Single Tool
+│                 │  Accepts natural language
+└────────┬────────┘
+         │
+         │
+┌────────▼────────┐
+│  Browser Agent  │  Intelligent automation
+│  (browser-use)  │  Finds elements automatically
+└────────┬────────┘
+         │
+┌────────▼────────┐
+│ Chrome Browser  │  Actual browser interaction
+│  (Playwright)   │
+└─────────────────┘
 ```
 
-## Available Tools
+## Available Tool
 
-### 1. `qa_execute_test`
+### `qa_automation`
 
-Execute any QA test using natural language.
+Execute any browser automation task using natural language instructions. This single, powerful tool handles all web automation scenarios through the intelligent Agent.
 
 **Input:**
 ```json
 {
-  "task": "Navigate to https://example.com and search for laptop",
-  "save_screenshot": true
+  "instruction": "Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/, add it to cart and generate screenshot"
 }
 ```
 
-**Example:**
-```
-Execute a test: Go to the homepage, search for 'shoes',
-click the first result, and verify the product page loaded
-```
+**What it can do:**
+- Navigate to any URL
+- Search for products
+- Click elements, fill forms
+- Add items to cart
+- Verify elements exist
+- Take screenshots
+- Execute multi-step workflows
+- Handle dynamic content
 
-### 2. `qa_navigate_and_screenshot`
+**Examples:**
 
-Navigate to a URL and take a screenshot.
-
-**Input:**
+**Simple Navigation:**
 ```json
 {
-  "url": "https://example.com"
+  "instruction": "Navigate to https://thehoffbrand.com and take a screenshot"
 }
 ```
 
-**Example:**
-```
-Navigate to https://thehoffbrand.com and take a screenshot
-```
-
-### 3. `qa_search_product`
-
-Search for a product on an e-commerce site.
-
-**Input:**
+**Product Search:**
 ```json
 {
-  "site_url": "https://example.com",
-  "search_term": "laptop"
+  "instruction": "Go to https://example.com, search for 'laptop', and capture the results"
 }
 ```
 
-**Example:**
-```
-Search for 'hat' on https://thehoffbrand.com
-```
-
-### 4. `qa_verify_element`
-
-Verify that an element or condition exists on a page.
-
-**Input:**
+**Complex Workflow:**
 ```json
 {
-  "url": "https://example.com/cart",
-  "expectation": "the shopping cart has items"
+  "instruction": "Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/, add it to cart and generate screenshot"
 }
 ```
 
-**Example:**
+**Element Verification:**
+```json
+{
+  "instruction": "Go to https://example.com/cart and verify that the shopping cart has items"
+}
 ```
-Verify that the cart at https://example.com/cart has items
+
+**Multi-step Test:**
+```json
+{
+  "instruction": "Navigate to the homepage, search for 'shoes', click the first result, verify the product page loaded, and take a screenshot"
+}
 ```
 
 ## Usage
@@ -123,7 +113,8 @@ Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/
 
 Then in Claude Desktop:
 ```
-Can you use the QA automation tools to test the homepage of thehoffbrand.com?
+Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/,
+add it to cart and generate screenshot
 ```
 
 ### Option 2: With mcp-use Client
@@ -151,12 +142,11 @@ from mcp_use import MCPClient
 client = MCPClient.from_config_file("mcp_server_config.json")
 session = client.get_session("qa-automation")
 
-# Call a specific tool
+# Call the automation tool
 result = await session.call_tool(
-    name="qa_execute_test",
+    name="qa_automation",
     arguments={
-        "task": "Go to homepage and search for laptop",
-        "save_screenshot": True
+        "instruction": "Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/, add it to cart and generate screenshot"
     }
 )
 print(result.content[0].text)
@@ -240,17 +230,18 @@ and verify the checkout page loaded correctly"
 ### With Claude Desktop
 
 ```
-You: Can you test the shopping cart on thehoffbrand.com?
+You: Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/,
+     add it to cart and generate screenshot
 
-Claude: I'll use the QA automation tools to test the shopping cart.
-[Claude calls qa_execute_test with appropriate task]
+Claude: I'll use the QA automation tool to search for that product and add it to cart.
+[Claude calls qa_automation with your instruction]
 ```
 
 ### With Cursor/VS Code
 
 Install an MCP client extension and configure the server. Then use natural language in your IDE:
 ```
-// Test the login flow on this website
+Search for 'laptop' on https://example.com and add the first one to cart
 ```
 
 ### With Custom Client
@@ -265,15 +256,15 @@ async def run_qa_tests():
 
     # Run multiple tests
     tests = [
-        "Navigate to homepage and verify logo",
-        "Test search functionality",
-        "Add product to cart and verify"
+        "Navigate to https://thehoffbrand.com and verify the logo is visible",
+        "Search for 'hat' and verify results appear",
+        "Go to https://thehoffbrand.com, search for 'shirt', add first product to cart"
     ]
 
     for test in tests:
         result = await session.call_tool(
-            name="qa_execute_test",
-            arguments={"task": test}
+            name="qa_automation",
+            arguments={"instruction": test}
         )
         print(f"Test: {test}")
         print(f"Result: {result.content[0].text}\n")
@@ -310,8 +301,8 @@ The Agent uses AI to find elements. If it's struggling:
 
 Check:
 1. `SCREENSHOTS_DIR` is writable
-2. `save_screenshot` parameter is set to `true`
-3. Task includes "Take a screenshot" in the description
+2. The Agent automatically takes screenshots at key moments
+3. Mention "screenshot" in your instruction if you want explicit captures
 
 ## Comparison with Direct Agent Usage
 

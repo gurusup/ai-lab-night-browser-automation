@@ -127,7 +127,7 @@ The QA automation system can be exposed as an **MCP (Model Context Protocol) ser
 
 - **[MCP Server Guide](docs/MCP_SERVER.md)** - Complete MCP server documentation
 - **[External Configuration Guide](docs/MCP_EXTERNAL_CONFIG.md)** - Use from other projects/locations
-- **Tools Available**: `qa_execute_test`, `qa_navigate_and_screenshot`, `qa_search_product`, `qa_verify_element`
+- **Tool Available**: `qa_automation` - Single tool that accepts natural language instructions
 - **Clients Supported**: Claude Desktop, Cursor, VS Code, any MCP client
 
 **Quick setup for Claude Desktop:**
@@ -136,6 +136,7 @@ See [MCP_EXTERNAL_CONFIG.md](docs/MCP_EXTERNAL_CONFIG.md) for complete configura
 
 **Example usage in Claude Desktop:**
 ```
-Can you use the QA automation tools to test the homepage of thehoffbrand.com?
+Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/,
+add it to cart and generate screenshot
 ```
 

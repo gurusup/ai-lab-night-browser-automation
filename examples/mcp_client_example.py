@@ -58,19 +58,16 @@ async def test_mcp_server():
         )
         print(f"\nResult: {result}")
 
-        # Example 3: Complex QA task
+        # Example 3: Complex workflow - Search and add to cart
         print("\n" + "=" * 60)
-        print("Test 3: Complex QA Flow")
+        print("Test 3: Complex Workflow - Search and Add to Cart")
         print("=" * 60)
 
         result = await agent.run(
             """
-            Execute a complete QA test:
-            1. Navigate to https://thehoffbrand.com
-            2. Search for 'shirt'
-            3. Click on the first product
-            4. Verify the product details page loaded
-            5. Take a screenshot
+            Use the QA automation tool to:
+            Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/,
+            add it to cart and generate screenshot
             """
         )
         print(f"\nResult: {result}")
@@ -92,35 +89,48 @@ async def test_direct_tool_calls():
         # Get the session for our QA automation server
         session = client.get_session("qa-automation")
 
-        # Example 1: Execute a QA test
-        print("\nCalling qa_execute_test...")
+        # Example 1: Simple navigation
+        print("\nTest 1: Simple Navigation")
         result = await session.call_tool(
-            name="qa_execute_test",
+            name="qa_automation",
             arguments={
-                "task": "Navigate to https://thehoffbrand.com and take a screenshot",
-                "save_screenshot": True,
+                "instruction": "Navigate to https://thehoffbrand.com and take a screenshot"
             },
         )
-        print(f"Result: {result.content[0].text}")
+        print(f"Result: {result.content[0].text}\n")
 
-        # Example 2: Navigate and screenshot
-        print("\nCalling qa_navigate_and_screenshot...")
+        # Example 2: Product search
+        print("\nTest 2: Product Search")
         result = await session.call_tool(
-            name="qa_navigate_and_screenshot",
-            arguments={"url": "https://thehoffbrand.com"},
-        )
-        print(f"Result: {result.content[0].text}")
-
-        # Example 3: Search product
-        print("\nCalling qa_search_product...")
-        result = await session.call_tool(
-            name="qa_search_product",
+            name="qa_automation",
             arguments={
-                "site_url": "https://thehoffbrand.com",
-                "search_term": "laptop",
+                "instruction": "Go to https://thehoffbrand.com, search for 'hat', and capture the results"
             },
         )
-        print(f"Result: {result.content[0].text}")
+        print(f"Result: {result.content[0].text}\n")
+
+        # Example 3: Complex workflow (your exact use case)
+        print("\nTest 3: Search Product and Add to Cart")
+        result = await session.call_tool(
+            name="qa_automation",
+            arguments={
+                "instruction": (
+                    "Search for SEVEN RUNNER METALLIC COPPER on https://thehoffbrand.com/, "
+                    "add it to cart and generate screenshot"
+                )
+            },
+        )
+        print(f"Result: {result.content[0].text}\n")
+
+        # Example 4: Element verification
+        print("\nTest 4: Verify Element")
+        result = await session.call_tool(
+            name="qa_automation",
+            arguments={
+                "instruction": "Go to https://thehoffbrand.com/cart and verify that the shopping cart is empty or has items"
+            },
+        )
+        print(f"Result: {result.content[0].text}\n")
 
     finally:
         await client.close_all_sessions()
