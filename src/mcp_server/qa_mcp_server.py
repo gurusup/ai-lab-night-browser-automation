@@ -23,7 +23,6 @@ class QAAutomationMCPServer:
     def __init__(self):
         """Initialize the MCP server."""
         self.server = Server("qa-automation")
-        self.agent: BrowserAgent | None = None
         self._setup_tools()
 
     def _setup_tools(self):
@@ -52,7 +51,9 @@ class QAAutomationMCPServer:
                         "- Finds elements without CSS selectors\n"
                         "- Adapts to page changes and dynamic content\n"
                         "- Takes screenshots at key moments\n"
-                        "- Handles complex multi-step workflows"
+                        "- Handles complex multi-step workflows\n"
+                        "\n"
+                        "Each call creates a fresh browser session for isolation."
                     ),
                     inputSchema={
                         "type": "object",
@@ -76,11 +77,6 @@ class QAAutomationMCPServer:
             """Execute a tool."""
             logger.info("Tool called", tool=name, arguments=arguments)
 
-            # Initialize agent if needed
-            if self.agent is None:
-                self.agent = BrowserAgent(headless=config.headless_mode)
-                await self.agent.start()
-
             try:
                 if name == "qa_automation":
                     return await self._execute_automation(arguments)
@@ -101,31 +97,43 @@ class QAAutomationMCPServer:
                 ]
 
     async def _execute_automation(self, arguments: dict) -> list[TextContent]:
-        """Execute browser automation task from natural language instruction."""
+        """Execute browser automation task from natural language instruction.
+
+        Creates a fresh agent for each call to ensure clean state.
+        """
         instruction = arguments["instruction"]
+        agent = None
 
-        logger.info("Executing automation", instruction=instruction)
+        try:
+            logger.info("Creating fresh browser agent for execution")
 
-        # Execute the task with the Agent - it handles everything
-        result = await self.agent.execute_task(instruction, save_screenshot=True)
+            # Create a new agent for this execution (ensures clean state)
+            agent = BrowserAgent(headless=config.headless_mode)
+            await agent.start()
 
-        # Format response
-        response_text = f"Task: {instruction}\n\n"
-        response_text += f"Status: {result['status']}\n"
-        response_text += f"Result: {result['message']}\n"
+            logger.info("Executing automation", instruction=instruction)
 
-        if result.get("screenshot"):
-            response_text += f"\nScreenshot saved: {result['screenshot']}"
+            # Execute the task with the Agent
+            result = await agent.execute_task(instruction, save_screenshot=True)
 
-        if result.get("error"):
-            response_text += f"\n\nError details: {result['error']}"
+            # Format response
+            response_text = f"Task: {instruction}\n\n"
+            response_text += f"Status: {result['status']}\n"
+            response_text += f"Result: {result['message']}\n"
 
-        return [TextContent(type="text", text=response_text)]
+            if result.get("screenshot"):
+                response_text += f"\nScreenshot saved: {result['screenshot']}"
 
-    async def cleanup(self):
-        """Cleanup resources."""
-        if self.agent:
-            await self.agent.stop()
+            if result.get("error"):
+                response_text += f"\n\nError details: {result['error']}"
+
+            return [TextContent(type="text", text=response_text)]
+
+        finally:
+            # Always cleanup the agent after execution
+            if agent:
+                logger.info("Cleaning up browser agent")
+                await agent.stop()
 
 
 async def main():
@@ -142,7 +150,7 @@ async def main():
                 server_instance.server.create_initialization_options(),
             )
     finally:
-        await server_instance.cleanup()
+        logger.info("MCP Server shutting down")
 
 
 if __name__ == "__main__":
