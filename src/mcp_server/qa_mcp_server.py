@@ -5,12 +5,10 @@ our intelligent browser automation Agent for QA testing.
 """
 
 import asyncio
-import base64
-from pathlib import Path
 from typing import Any, Dict, List
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
-from mcp.types import Tool, TextContent, ImageContent
+from mcp.types import Tool, TextContent
 
 from ..automation.browser_agent import BrowserAgent
 from ..utils.logger import get_logger
@@ -75,7 +73,7 @@ class QAAutomationMCPServer:
             ]
 
         @self.server.call_tool()
-        async def call_tool(name: str, arguments: dict) -> list[TextContent | ImageContent]:
+        async def call_tool(name: str, arguments: dict) -> list[TextContent]:
             """Execute a tool."""
             logger.info("Tool called", tool=name, arguments=arguments)
 
@@ -98,7 +96,7 @@ class QAAutomationMCPServer:
                     )
                 ]
 
-    async def _execute_automation(self, arguments: dict) -> list[TextContent | ImageContent]:
+    async def _execute_automation(self, arguments: dict) -> list[TextContent]:
         """Execute browser automation task from natural language instruction.
 
         Creates a fresh agent for each call to ensure clean state.
@@ -135,33 +133,8 @@ class QAAutomationMCPServer:
                 response_text += f"\n📸 Screenshot saved at:\n{screenshot_path}\n"
                 response_text += f"\n[🖼️ Click here to open screenshot](file://{screenshot_path})"
 
-                # Try to read and include the screenshot as ImageContent
-                try:
-                    screenshot_file = Path(screenshot_path)
-                    if screenshot_file.exists():
-                        screenshot_bytes = screenshot_file.read_bytes()
-                        screenshot_b64 = base64.b64encode(screenshot_bytes).decode('utf-8')
-
-                        # Add text response first
-                        response_content.append(TextContent(type="text", text=response_text))
-
-                        # Add image content so it displays in chat
-                        response_content.append(ImageContent(
-                            type="image",
-                            data=screenshot_b64,
-                            mimeType="image/png"
-                        ))
-
-                        logger.info("Screenshot included in response", path=screenshot_path)
-                    else:
-                        # If file doesn't exist, just return text
-                        response_content.append(TextContent(type="text", text=response_text))
-                except Exception as img_error:
-                    logger.warning("Could not include screenshot in response", error=str(img_error))
-                    response_content.append(TextContent(type="text", text=response_text))
-            else:
-                # No screenshot, just text
-                response_content.append(TextContent(type="text", text=response_text))
+            # Return text response only (base64 images can be too large for MCP payload)
+            response_content.append(TextContent(type="text", text=response_text))
 
             return response_content
 
