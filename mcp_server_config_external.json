@@ -6,7 +6,7 @@
       "args": [
         "run",
         "--directory",
-        "/Users/oliver/Sites/community/gurusup/ai-lab-night-browser-automation",
+        "/repo/gurusup/ai-lab-night-browser-automation",
         "python",
         "-m",
         "src.mcp_server.qa_mcp_server"
