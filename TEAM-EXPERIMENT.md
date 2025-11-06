@@ -1,13 +1,11 @@
 # AI LAB NIGHT - [Your Team Name]
-- Participant 1
-- Participan 2
-- .....
+- Diego Barea Gimeno
 
 ## Challenges
-[An explanation of the challenge]
+Intentar pasar verificaciones humanas con la IA, con relativo éxito.
 
 ## Tech Stack
-[Explain what Tech Stack you have use (Libraries, Agent Stack, Programing Language....)]
+Un script sencillo de Python, parametrizado para poder probar los distintos casos de uso.
 
 ## Results and Conclusions
-[Explain yout findings and conclusions regarding the technology]
+Parece un puente potente para cuando no existen API, pero es lento, y es relativamente tedioso el proceso de especificar los pasos que tiene que seguir el LLM. Además, dada la naturaleza de la tecnología, no le confiaría por ejemplo hacer una compra.
