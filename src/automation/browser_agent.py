@@ -107,8 +107,10 @@ class BrowserAgent:
                 try:
                     screenshot_path = await self._save_screenshot_from_history(task, history)
                     if screenshot_path:
-                        result["screenshot"] = str(screenshot_path)
-                        logger.info("Screenshot saved", path=str(screenshot_path))
+                        # Convert to absolute path for MCP clients to access
+                        absolute_path = screenshot_path.resolve()
+                        result["screenshot"] = str(absolute_path)
+                        logger.info("Screenshot saved", path=str(absolute_path))
                 except Exception as screenshot_error:
                     logger.warning("Failed to save screenshot", error=str(screenshot_error))
 
