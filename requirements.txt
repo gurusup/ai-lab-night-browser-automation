@@ -1,0 +1,4 @@
+browser-use
+openai
+anthropic
+python-dotenv
