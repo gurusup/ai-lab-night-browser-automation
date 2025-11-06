@@ -1,0 +1,79 @@
+{
+  "name": "Vicente Rivas Monferrer",
+  "location": "Valencia",
+  "bio": "Hola! Soy Vicente Rivas Monferrer y soy estudiante universitario. Mi sueño es algún día ser fullstack developer y para ello, iré subiendo mis proyectos aquí!",
+  "technologies": [
+    "NumPy",
+    "PHP",
+    "React",
+    "Git",
+    "JavaScript",
+    "Python",
+    "Docker",
+    "SQL",
+    "Java",
+    "Figma",
+    "Next.js"
+  ],
+  "languages": [
+    "CSS",
+    "HCL",
+    "HTML",
+    "JavaScript",
+    "Python",
+    "TypeScript",
+    "Jupyter Notebook",
+    "C#"
+  ],
+  "frameworks": [],
+  "tools": [],
+  "years_of_experience": null,
+  "current_role": null,
+  "companies": [],
+  "linkedin_url": null,
+  "github_url": "https://github.com/vjrivmon",
+  "portfolio_url": null,
+  "notable_projects": [
+    {
+      "name": "aidguide_04",
+      "description": null,
+      "language": "TypeScript",
+      "stars": 3,
+      "url": "https://github.com/vjrivmon/aidguide_04"
+    },
+    {
+      "name": "NeuroSpot",
+      "description": "Evaluación interactiva para detectar posibles indicadores de TDAH en niños, mediante juegos cognitivos breves.",
+      "language": "TypeScript",
+      "stars": 1,
+      "url": "https://github.com/vjrivmon/NeuroSpot"
+    },
+    {
+      "name": "Osyris-Web",
+      "description": null,
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/vjrivmon/Osyris-Web"
+    },
+    {
+      "name": "panel-admin-vicente",
+      "description": "Panel de administración personal de Vicente Rivas - AI Engineer & Systems Architect",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/vjrivmon/panel-admin-vicente"
+    },
+    {
+      "name": "claude-agent-bootstrap",
+      "description": "Sistema profesional de generación de arquitecturas multi-agente con Claude Code --template",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/vjrivmon/claude-agent-bootstrap"
+    }
+  ],
+  "desired_roles": [],
+  "work_preferences": {},
+  "sources": {
+    "cv": "loaded",
+    "github": "loaded"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "name": "Vicente Rivas Monferrer",
+  "username": "vjrivmon",
+  "bio": "Hola! Soy Vicente Rivas Monferrer y soy estudiante universitario. Mi sueño es algún día ser fullstack developer y para ello, iré subiendo mis proyectos aquí!",
+  "location": "Valencia",
+  "company": null,
+  "website": "https://linkedin.com/in/vicente-rivas-monferrer",
+  "followers": 2,
+  "following": 18,
+  "public_repos": 70,
+  "contributions_last_year": 538,
+  "languages": [
+    {
+      "language": "TypeScript",
+      "percentage": 45
+    },
+    {
+      "language": "HTML",
+      "percentage": 20
+    },
+    {
+      "language": "JavaScript",
+      "percentage": 15
+    },
+    {
+      "language": "Python",
+      "percentage": 10
+    },
+    {
+      "language": "CSS",
+      "percentage": 5
+    },
+    {
+      "language": "Java",
+      "percentage": 5
+    }
+  ],
+  "repositories": [
+    {
+      "name": "aidguide_04",
+      "description": "No disponible",
+      "language": "TypeScript",
+      "stars": 3,
+      "url": "https://github.com/vjrivmon/aidguide_04"
+    },
+    {
+      "name": "NeuroSpot",
+      "description": "Evaluación interactiva para detectar posibles indicadores de TDAH en niños, mediante juegos cognitivos breves.",
+      "language": "TypeScript",
+      "stars": 1,
+      "url": "https://github.com/vjrivmon/NeuroSpot"
+    },
+    {
+      "name": "vjrivmon",
+      "description": "No disponible",
+      "language": "No disponible",
+      "stars": 0,
+      "url": "https://github.com/vjrivmon/vjrivmon"
+    },
+    {
+      "name": "hello-git-visi02",
+      "description": "Curso para aprender a trabajar con el sistema de control de versiones Git y la plataforma GitHub desde cero y para principiantes. Elaborado durante las emisiones en directo desde Twitch de MoureDev.",
+      "language": "No disponible",
+      "stars": 0,
+      "url": "https://github.com/vjrivmon/hello-git-visi02"
+    },
+    {
+      "name": "IoT_Farola_",
+      "description": "Forked from EcoCityGti/IoT_Farola_",
+      "language": "Java",
+      "stars": 0,
+      "url": "https://github.com/vjrivmon/IoT_Farola_"
+    },
+    {
+      "name": "retos-programacion-2023",
+      "description": "Ejercicios de código semanales en 2023 de la comunidad MoureDev para practicar lógica en cualquier lenguaje de programación.",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/vjrivmon/retos-programacion-2023"
+    }
+  ],
+  "frameworks": [
+    "Next.js",
+    "React",
+    "Vite",
+    "Tailwind CSS",
+    "ROS2"
+  ],
+  "tools": [
+    "Git",
+    "GitHub",
+    "MCP Git Ops server",
+    "API Data v3",
+    "Docker",
+    "Cloud Computing"
+  ],
+  "specializations": [
+    "Fullstack Development",
+    "AI Engineering",
+    "Systems Architect",
+    "DevOps",
+    "Software Development",
+    "SCRUM"
+  ],
+  "activity_level": "Moderate",
+  "profile_url": "https://github.com/vjrivmon"
+}
